@@ -1,19 +1,16 @@
-import { useEffect } from "react";
-
-export function App() {
-  function fetchData() {
-    fetch("https://jsonplaceholder.typicode.com/todos/1")
-      .then((response) => response.json())
-      .then((data) => console.log(JSON.stringify(data)));
-  }
-
-  useEffect(() => {
-    fetchData();
-  }, []);
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Index } from './pages/Index';
+function App() {
 
   return (
-    <div>
-      <p>Teste</p>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/caixa" element={<Index />} />
+
+        <Route path="/" element={<div>Página Inicial</div>} /> 
+      </Routes>
+    </BrowserRouter>
   );
 }
+
+export default App;
