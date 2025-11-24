@@ -1,23 +1,23 @@
 services:
   db:
     image: mysql:latest
-    container_name: verzelchallenge_mysql
+    container_name: verzelcaixa_mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: verzel_db
       MYSQL_USER: Patrick
       MYSQL_PASSWORD: Patrick@1
     ports:
-      - "3307:3307"
+      - "3306:3306"
     volumes:
-      - mysql_data:/var/lib/mysql
+      - mysqlcaixa_data:/var/lib/mysql
     networks:
-      - verzel_network
+      - verzelcaixa_network
     restart: unless-stopped
 
 volumes:
-  mysql_data:
+  mysqlcaixa_data:
 
 networks:
-  verzel_network:
+  verzelcaixa_network:
     driver: bridge

@@ -14,3 +14,40 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Caixa {
+  id       Int    @id @default(autoincrement())
+  nomeLoja String
+  status   String
+
+  transacoes   Transacao[]
+  conciliacoes Conciliacao[]
+}
+
+model Conciliacao {
+  id                  Int      @id @default(autoincrement())
+  data                DateTime
+  analistaResponsavel String
+  status              Boolean
+
+  caixaId Int
+  caixa   Caixa @relation(fields: [caixaId], references: [id])
+
+  transacoes Transacao[]
+}
+
+model Transacao {
+  id                Int      @id @default(autoincrement())
+  data              DateTime
+  tipo              String
+  valor             Decimal
+  codigo            String?
+  evidencia         String?
+  mensagemAnalista  String?
+  depositoConferido Boolean  @default(false)
+
+  caixaId Int
+  caixa   Caixa @relation(fields: [caixaId], references: [id])
+
+  conciliacaoId Int?
+  conciliacao   Conciliacao? @relation(fields: [conciliacaoId], references: [id])
+}
