@@ -1,19 +1,5 @@
-import { useEffect } from "react";
+import { AppRoutes } from "./routes/AppRoutes";
 
-export function App() {
-  function fetchData() {
-    fetch("https://jsonplaceholder.typicode.com/todos/1")
-      .then((response) => response.json())
-      .then((data) => console.log(JSON.stringify(data)));
-  }
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  return (
-    <div>
-      <p>Teste</p>
-    </div>
-  );
+export default function App() {
+  return <AppRoutes />;
 }
